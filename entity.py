@@ -1,7 +1,7 @@
 import re
 
 class Usuario:
-    def __init__(self, nome: str, email: str, area_interesse: str):
+    def __init__(self, nome: str, email: str, area_interesse: list):
         regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
         if not (re.fullmatch(regex, email)):
             raise Exception("Email Inválido")
@@ -17,7 +17,7 @@ class Usuario:
     )
 
     
-    def canidatar(self, vaga):
+    def candidatar(self, vaga):
         self.vagas_cadastradas.append(vaga)
 
 class Empresa:
