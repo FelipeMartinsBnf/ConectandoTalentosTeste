@@ -31,9 +31,9 @@ def test_verificar_candidatar():
     """Verifica se o usuário consegue se candidatar a uma vaga"""
     """ Teste De integração entre usuário e Empresa"""
 
-    estudante = entity.Usuario("Paulo", "Tusiozshi@airbus.com", "Passarologia")
+    estudante = entity.Usuario("Paulo", "Tusiozshi@airbus.com", "Veterinaria")
     empresa = entity.Empresa("Fepi", "Educação")
-    vaga = empresa.criar_vaga("Professor", "Professor de engenharia de pássaros", ["Passarologia", "Biologia"])
+    vaga = empresa.criar_vaga("Professor", "Professor de biologia", ["Veterinaria", "Biologia"])
     empresa.vagas[0].candidatar(estudante);
     print(empresa.vagas)
     assert empresa.vagas[0].candidatos[0] == estudante
@@ -53,10 +53,10 @@ def test_desempenho():
     """Verifica se o sistema consegue cadastrar 200 usuários em menos de 5 segundos"""
     """ Teste De desempenho"""
     inicio = time.time();
-    for x in range(200000):
+    for x in range(200):
         estudante = entity.Usuario("Paulinho", "paulinhoGardenia@valonia.com", "Busologia")
         empresa = entity.Empresa("Cesar burges lanchonete", "Comida")
-        vaga = empresa.criar_vaga("Tecnico de chapa", "Tecnico para manuseat chapas qunetes", ["Chapa", "Lanche"])
+        vaga = empresa.criar_vaga("Tecnico de chapa", "Cozinhiro com mais de 2 anos ....", ["Chapa", "Lanche"])
         empresa.vagas[0].candidatar(estudante)
 
     final = time.time();
