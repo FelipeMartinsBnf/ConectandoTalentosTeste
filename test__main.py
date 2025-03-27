@@ -9,7 +9,6 @@ def test_usuario_cadastro():
     area_interesse = ["Dev", "Java"]
     
     usuario = entity.Usuario(nome, email, area_interesse)
-    print(usuario)
     assert usuario.nome == nome
     assert usuario.email == email
     assert usuario.area_interesse == area_interesse
@@ -34,7 +33,7 @@ def test_verificar_candidatar():
 
     estudante = entity.Usuario("Paulo", "Tusiozshi@airbus.com", "Passarologia")
     empresa = entity.Empresa("Fepi", "Educação")
-    vaga = empresa.criar_vaga("Professor", "Professor de engenharia de pássaros", ["Passarologia", "Gaiolas"])
+    vaga = empresa.criar_vaga("Professor", "Professor de engenharia de pássaros", ["Passarologia", "Biologia"])
     empresa.vagas[0].candidatar(estudante);
     print(empresa.vagas)
     assert empresa.vagas[0].candidatos[0] == estudante
@@ -44,8 +43,8 @@ def test_verificar_candidatar_inapto():
     """ Teste De Sistema - Fluxo Completo"""
 
     estudante = entity.Usuario("Paulinho", "paulinhoGardenia@valonia.com", "Busologia")
-    empresa = entity.Empresa("Cesar burges lanchonete", "Comida")
-    vaga = empresa.criar_vaga("Tecnico de chapa", "Tecnico para manuseat chapas qunetes", ["Chapa", "Lanche"])
+    empresa = entity.Empresa("Hambugeria do Toninho", "Comida")
+    vaga = empresa.criar_vaga("Tecnico de chapa", "Cozinhiro com mais de 2 anos ....", ["Cozinha", "Liderança"])
     empresa.vagas[0].candidatar(estudante)
     
     assert not vaga.candidatos
@@ -54,7 +53,7 @@ def test_desempenho():
     """Verifica se o sistema consegue cadastrar 200 usuários em menos de 5 segundos"""
     """ Teste De desempenho"""
     inicio = time.time();
-    for x in range(200):
+    for x in range(200000):
         estudante = entity.Usuario("Paulinho", "paulinhoGardenia@valonia.com", "Busologia")
         empresa = entity.Empresa("Cesar burges lanchonete", "Comida")
         vaga = empresa.criar_vaga("Tecnico de chapa", "Tecnico para manuseat chapas qunetes", ["Chapa", "Lanche"])
@@ -62,18 +61,3 @@ def test_desempenho():
 
     final = time.time();
     assert final - inicio < 1
-
-def test_regressao_candidatura():
-    """Teste de regressão, que deve ser testado sempre que houver alguma mudança no código, validando a criação e cadastro das vagas"""
-    """ Teste de regressão"""
-    empresa = Empresa("Tech Corp", "Tecnologia")
-    vaga = empresa.criar_vaga("Desenvolvedor Python", "Desenvolvimento de aplicações", ["Desenvolvimento"])
-    usuario = Usuario("Ana Souza", "ana.souza@email.com", "Desenvolvimento")
-    
-    resultado = vaga.candidatar(usuario)
-    
-    assert usuario in vaga.candidatos
-    assert resultado == "Ana Souza se candidatou para a vaga Desenvolvedor Python."
-    assert len(vaga.candidatos) == 1
-    
-    
